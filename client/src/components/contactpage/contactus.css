@@ -1,0 +1,131 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+.contact-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Contact Form Section with Luxury Real Estate Gradient */
+.contact-form-section {
+  flex: 1;
+  padding: 80px 20px;
+  background: linear-gradient(135deg, #f7f8fa, #e6ecf3);
+  text-align: center;
+}
+
+.contact-form-section h2 {
+  font-size: 2.6rem;
+  color: #243b53;
+  margin-bottom: 14px;
+}
+
+.contact-form-section p {
+  margin-bottom: 50px;
+  color: #556677;
+  font-size: 1.1rem;
+}
+
+/* Form Card with Soft Glassmorphism and Shadow */
+.contact-form {
+  max-width: 650px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(14px);
+  padding: 50px;
+  border-radius: 25px;
+  box-shadow: 0 12px 40px rgba(36, 59, 83, 0.08);
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 18px;
+  border: 1.5px solid #cfd9e3;
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: #fff;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: #4c8bf5;
+  box-shadow: 0 0 0 4px rgba(76, 139, 245, 0.1);
+}
+
+.contact-form button {
+  padding: 18px;
+  background-color: #4c8bf5;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.contact-form button:hover {
+  background-color: #3a76d1;
+}
+
+/* Footer Styling */
+.footer {
+  background-color: #243b53;
+  color: white;
+  text-align: center;
+  padding: 25px;
+  margin-top: auto;
+}
+
+.footer .socials {
+  margin-top: 12px;
+}
+
+.footer .socials a {
+  color: #a4d2ff;
+  margin: 0 10px;
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+.footer .socials a:hover {
+  color: #ffffff;
+}
+
+/* Responsive Adjustments */
+@media screen and (max-width: 768px) {
+  .contact-form {
+    padding: 35px 20px;
+  }
+
+  .contact-form-section h2 {
+    font-size: 2.3rem;
+  }
+
+  .contact-form-section p {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .contact-form {
+    padding: 30px 16px;
+  }
+
+  .contact-form-section h2 {
+    font-size: 2rem;
+  }
+
+  .contact-form-section p {
+    font-size: 0.95rem;
+  }
+}

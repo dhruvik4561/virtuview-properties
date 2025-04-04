@@ -1,0 +1,201 @@
+@import "../../responsive.scss";
+
+.card {
+  display: flex;
+  gap: 20px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+
+    .imageContainer img {
+      transform: scale(1.05);
+    }
+
+    .textContainer .title {
+      color: #fece51;
+    }
+
+    .icons .icon {
+      background-color: #fece51;
+      border-color: #fece51;
+      color: white;
+    }
+  }
+
+  .imageContainer {
+    flex: 2;
+    height: 200px;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.1) 100%);
+      z-index: 1;
+    }
+
+    @include md {
+      display: none;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+      transition: transform 0.5s ease;
+    }
+  }
+
+  .textContainer {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 15px;
+
+    img {
+      width: 16px;
+      height: 16px;
+      transition: transform 0.3s ease;
+    }
+
+    .title {
+      font-size: 20px;
+      font-weight: 600;
+      color: #2c3e50;
+      transition: all 0.3s ease;
+      position: relative;
+      padding-bottom: 5px;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, #fece51, #f0b400);
+        transition: width 0.3s ease;
+      }
+
+      &:hover::after {
+        width: 100%;
+      }
+    }
+
+    .address {
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: #666;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: #2c3e50;
+      }
+    }
+
+    .price {
+      font-size: 20px;
+      font-weight: 600;
+      padding: 8px 15px;
+      border-radius: 8px;
+      background: linear-gradient(45deg, rgba(254, 206, 81, 0.2), rgba(240, 180, 0, 0.2));
+      width: max-content;
+      color: #2c3e50;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: linear-gradient(45deg, rgba(254, 206, 81, 0.3), rgba(240, 180, 0, 0.3));
+        transform: translateY(-2px);
+      }
+    }
+
+    .bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      margin-top: 10px;
+
+      .features {
+        display: flex;
+        gap: 15px;
+        font-size: 14px;
+
+        .feature {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          background-color: #f8f9fa;
+          padding: 8px 12px;
+          border-radius: 8px;
+          transition: all 0.3s ease;
+          color: #666;
+
+          &:hover {
+            background-color: #fece51;
+            color: white;
+            transform: translateY(-2px);
+          }
+
+          img {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.3s ease;
+          }
+
+          &:hover img {
+            transform: scale(1.1);
+          }
+        }
+      }
+
+      .icons {
+        display: flex;
+        gap: 15px;
+
+        .icon {
+          border: 1px solid #ddd;
+          padding: 8px;
+          border-radius: 8px;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: all 0.3s ease;
+          color: #666;
+
+          &:hover {
+            transform: translateY(-2px);
+          }
+
+          img {
+            width: 18px;
+            height: 18px;
+            transition: transform 0.3s ease;
+          }
+
+          &:hover img {
+            transform: scale(1.1);
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,128 @@
+@import "../../responsive.scss";
+
+.login {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8f9fa;
+  padding: 0 20px;
+  overflow: hidden;
+
+  .formContainer {
+    width: 100%;
+    max-width: 400px;
+    padding: 40px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    h1 {
+      font-size: 24px;
+      font-weight: 600;
+      color: #2c3e50;
+      margin-bottom: 30px;
+      text-align: center;
+      position: relative;
+      padding-bottom: 10px;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 50px;
+        height: 3px;
+        background: linear-gradient(90deg, #fece51, #f0b400);
+        border-radius: 3px;
+      }
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      input {
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 16px;
+        transition: all 0.3s ease;
+
+        &:focus {
+          outline: none;
+          border-color: #fece51;
+          box-shadow: 0 0 0 3px rgba(254, 206, 81, 0.1);
+        }
+
+        &::placeholder {
+          color: #999;
+        }
+      }
+
+      button {
+        padding: 12px;
+        background: linear-gradient(45deg, #fece51, #f0b400);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-weight: 500;
+        font-size: 16px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 4px 15px rgba(254, 206, 81, 0.3);
+        }
+
+        &:disabled {
+          background: #ddd;
+          cursor: not-allowed;
+          transform: none;
+          box-shadow: none;
+        }
+      }
+    }
+
+    .links {
+      margin-top: 20px;
+      text-align: center;
+
+      a {
+        color: #2c3e50;
+        text-decoration: none;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        position: relative;
+
+        &:hover {
+          color: #fece51;
+        }
+
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: -2px;
+          left: 0;
+          width: 0;
+          height: 1px;
+          background-color: #fece51;
+          transition: width 0.3s ease;
+        }
+
+        &:hover::after {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
