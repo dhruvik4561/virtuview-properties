@@ -68,23 +68,7 @@ function AboutPage() {
           </div>
         </section>
 
-        <section className="testimonials-section">
-          <h2>What Our Clients Say</h2>
-          <div className="testimonials-grid">
-            <div className="testimonial-card">
-              <p>"VirtuView helped me purchase my dream villa entirely online. The virtual tours felt like I was really there!"</p>
-              <h4>— Amanda Richards</h4>
-            </div>
-            <div className="testimonial-card">
-              <p>"Professional, fast, and flawless service. Highly recommend VirtuView for luxury property buyers."</p>
-              <h4>— Martin Brooks</h4>
-            </div>
-            <div className="testimonial-card">
-              <p>"A seamless experience from virtual viewing to closing the deal!"</p>
-              <h4>— Priya Sharma</h4>
-            </div>
-          </div>
-        </section>
+        
 
         <section className="contact-cta">
           <h2>Ready to Find Your Dream Property?</h2>

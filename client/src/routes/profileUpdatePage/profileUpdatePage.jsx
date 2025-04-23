@@ -28,7 +28,7 @@ function ProfileUpdatePage() {
         username,
         email,
         password,
-        avatar: avatar[0]
+        avatar: avatar[0] || currentUser.avatar
       });
       updateUser(res.data);
       setSuccessMessage("Profile updated successfully!");
@@ -77,11 +77,17 @@ function ProfileUpdatePage() {
               placeholder="Leave blank to keep current password"
             />
           </div>
+          <div className="item">
+            <label>Account Type</label>
+            <div className="userTypeDisplay">
+              {currentUser.userType === "seller" ? "Seller Account" : "Buyer Account"}
+            </div>
+          </div>
           <button type="submit" disabled={isLoading}>
             {isLoading ? "Updating..." : "Update Profile"}
           </button>
-          {error && <span>{error}</span>}
-          {successMessage && <span style={{ color: "#27ae60", backgroundColor: "rgba(39, 174, 96, 0.1)" }}>{successMessage}</span>}
+          {error && <span className="error">{error}</span>}
+          {successMessage && <span className="success">{successMessage}</span>}
           <div style={{ textAlign: "center", marginTop: "20px" }}>
             <Link to="/profile" style={{ color: "#3498db", textDecoration: "none", fontWeight: "500" }}>
               ← Back to Profile
@@ -90,15 +96,19 @@ function ProfileUpdatePage() {
         </form>
       </div>
       <div className="sideContainer">
-        <img src={avatar[0] || currentUser.avatar || "/noavatar.jpg"} alt="Profile Avatar" className="avatar" />
-        <div className="uploadWidget">
+        <img 
+          src={avatar[0] || currentUser.avatar || "/noavatar.jpg"} 
+          alt="Profile Avatar" 
+          className="avatar" 
+        />
+        <div className="uploadSection">
           <UploadWidget
             uwConfig={{
               cloudName: "lamadev",
               uploadPreset: "estate",
               multiple: false,
               maxImageFileSize: 2000000,
-              folder: "avatars",
+              folder: "avatars"
             }}
             setState={setAvatar}
           />

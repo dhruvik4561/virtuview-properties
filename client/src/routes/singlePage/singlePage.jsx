@@ -1,6 +1,7 @@
 import "./singlePage.scss";
 import PropertyGallery from "../../components/propertyGallery/PropertyGallery";
 import Map from "../../components/map/Map";
+import ModelViewer from "../../components/modelViewer/ModelViewer";
 import { useNavigate, useLoaderData } from "react-router-dom";
 import DOMPurify from "dompurify";
 import { useContext, useState } from "react";
@@ -14,20 +15,34 @@ function SinglePage() {
   const [bookingDate, setBookingDate] = useState("");
   const [bookingError, setBookingError] = useState("");
   const [bookingSuccess, setBookingSuccess] = useState("");
+  const [saveSuccess, setSaveSuccess] = useState(false);
   const { currentUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleSave = async () => {
     if (!currentUser) {
       navigate("/login");
+      return;
     }
-    // AFTER REACT 19 UPDATE TO USEOPTIMISTIK HOOK
-    setSaved((prev) => !prev);
+
     try {
-      await apiRequest.post("/users/save", { postId: post.id });
+      const res = await apiRequest.post("/users/save", { postId: post.id });
+      if (res.data.message === "Post saved") {
+        setSaved(true);
+        setSaveSuccess(true);
+        setTimeout(() => {
+          setSaveSuccess(false);
+        }, 3000);
+      } else if (res.data.message === "Post removed from saved list") {
+        setSaved(false);
+      }
     } catch (err) {
-      console.log(err);
-      setSaved((prev) => !prev);
+      console.error("Save error:", err);
+      if (err.response?.status === 401) {
+        navigate("/login");
+      } else {
+        setBookingError(err.response?.data?.message || "Failed to save the property");
+      }
     }
   };
 
@@ -38,16 +53,32 @@ function SinglePage() {
       return;
     }
 
+    if (!bookingDate) {
+      setBookingError("Please select a date for your visit");
+      return;
+    }
+
     try {
       const res = await apiRequest.post("/bookings", {
         postId: post.id,
         date: bookingDate,
       });
-      setBookingSuccess("Booking request sent successfully!");
-      setShowBookingForm(false);
-      setBookingDate("");
+      
+      if (res.data.message === "Booking created successfully") {
+        setBookingSuccess("Booking request sent successfully!");
+        setShowBookingForm(false);
+        setBookingDate("");
+        setBookingError("");
+      } else {
+        setBookingError(res.data.message || "Failed to book the property");
+      }
     } catch (err) {
-      setBookingError(err.response?.data?.message || "Failed to book the property");
+      console.error("Booking error:", err);
+      if (err.response?.status === 401) {
+        navigate("/login");
+      } else {
+        setBookingError(err.response?.data?.message || "Failed to book the property. Please try again later.");
+      }
     }
   };
 
@@ -160,23 +191,23 @@ function SinglePage() {
             </div>
             
             <div className="buttons">
-              <button>
-                <img src="/chat.png" alt="" />
-                Send a Message
-              </button>
               <button
                 onClick={handleSave}
+                className={saved ? "saved" : ""}
                 style={{
                   backgroundColor: saved ? "#fece51" : "white",
+                  cursor: saved ? "default" : "pointer",
                 }}
               >
                 <img src="/save.png" alt="" />
                 {saved ? "Place Saved" : "Save the Place"}
               </button>
-              <button onClick={() => setShowBookingForm(true)}>
-                <img src="/calendar.png" alt="" />
-                Book a Visit
-              </button>
+              {currentUser?.userType !== "seller" && (
+                <button onClick={() => setShowBookingForm(true)}>
+                  <img src="https://cdn-icons-png.flaticon.com/512/747/747310.png" alt="Calendar" />
+                  Book a Visit
+                </button>
+              )}
             </div>
             
             {showBookingForm && (
@@ -193,8 +224,7 @@ function SinglePage() {
                   <button type="button" onClick={() => setShowBookingForm(false)}>
                     Cancel
                   </button>
-                  {bookingError && <p className="error">{bookingError}</p>}
-                  {bookingSuccess && <p className="success">{bookingSuccess}</p>}
+                  {bookingSuccess && <div className="success">{bookingSuccess}</div>}
                 </form>
               </div>
             )}
@@ -203,10 +233,18 @@ function SinglePage() {
       </div>
       
       <div className="rightContent">
+        <div className="modelViewerContainer">
+          <ModelViewer />
+        </div>
         <div className="mapContainer">
           <Map items={[post]} />
         </div>
       </div>
+      {saveSuccess && (
+        <div className="saveSuccess">
+          <p>Post saved successfully!</p>
+        </div>
+      )}
     </div>
   );
 }

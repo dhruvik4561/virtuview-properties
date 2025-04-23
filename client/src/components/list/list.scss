@@ -1,5 +1,23 @@
-.list{
-  display: flex;
-  flex-direction: column;
-  gap: 50px;
+.list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 30px;
+  padding: 20px;
+  width: 100%;
+  min-height: 100vh;
+
+  &.empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+    color: #666;
+    font-size: 1.2rem;
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 15px;
+  }
 }

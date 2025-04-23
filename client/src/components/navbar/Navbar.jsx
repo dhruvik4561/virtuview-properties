@@ -58,8 +58,16 @@ function Navbar() {
           <Link to="/properties">Properties</Link>
           <Link to="/about">About</Link>
           <Link to="/contact">Contact</Link>
-          <Link to="/login">Sign in</Link>
-          <Link to="/register">Sign up</Link>
+          {currentUser ? (
+            <>
+              <Link to="/profile">Profile</Link>
+            </>
+          ) : (
+            <>
+              <Link to="/login">Sign in</Link>
+              <Link to="/register">Sign up</Link>
+            </>
+          )}
         </div>
       </div>
     </nav>

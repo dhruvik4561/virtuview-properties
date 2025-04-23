@@ -170,13 +170,20 @@ function NewPostPage() {
       </div>
       <div className="sideContainer">
         <h2>Property Images</h2>
-        {images.length > 0 ? (
-          <div className="imageGrid">
-            {images.map((image, index) => (
-              <img src={image} key={index} alt={`Property image ${index + 1}`} />
-            ))}
-          </div>
-        ) : (
+        <div className="imageGrid">
+          {images.map((image, index) => (
+            <div key={index} className="imageItem">
+              <img src={image} alt={`Property image ${index + 1}`} />
+              <button 
+                className="removeImage" 
+                onClick={() => setImages(prev => prev.filter((_, i) => i !== index))}
+              >
+                ×
+              </button>
+            </div>
+          ))}
+        </div>
+        {images.length === 0 && (
           <p style={{ color: "#fece51", marginBottom: "20px" }}>No images uploaded yet</p>
         )}
         <UploadWidget

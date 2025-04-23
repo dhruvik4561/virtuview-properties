@@ -6,7 +6,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 0 40px;
-  background-color: #1a1a1a;
+  background: #040404;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   width: 100%;
   position: relative;
@@ -20,10 +20,12 @@ nav {
     transition: all 0.3s ease;
     font-weight: 500;
     position: relative;
-    color: #f0f0f0;
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 0.5px;
 
     &:hover {
-      color: #fece51;
+      color: #FFD700;
     }
 
     &::after {
@@ -33,7 +35,7 @@ nav {
       left: 0;
       width: 0;
       height: 2px;
-      background-color: #fece51;
+      background: linear-gradient(90deg, #FFD700, #FFA500);
       transition: width 0.3s ease;
     }
 
@@ -52,18 +54,32 @@ nav {
     align-items: center;
 
     .logo {
-      font-weight: bold;
-      font-size: 24px;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 46px;
       display: flex;
       align-items: center;
-      gap: 10px;
-      color: #4CAF50;
+      gap: 18px;
+      color: #ffffff;
       transition: all 0.3s ease;
+      letter-spacing: 1px;
+      text-transform: capitalize;
+      background: linear-gradient(90deg, #B8860B, #DAA520);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      font-style: italic;
 
       img {
-        width: 28px;
-        height: 28px;
+        width: 48px;
+        height: 48px;
         object-fit: cover;
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+      }
+
+      &:hover {
+        transform: scale(1.05);
+        text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       }
     }
   }
@@ -74,6 +90,22 @@ nav {
     align-items: center;
     justify-content: center;
     gap: 50px;
+
+    a {
+      color: #ffffff;
+      font-weight: 500;
+      font-size: 1rem;
+      padding: 8px 0;
+      position: relative;
+
+      &::after {
+        background: linear-gradient(90deg, #FFD700, #FFA500);
+      }
+
+      &:hover {
+        color: #FFD700;
+      }
+    }
 
     @include md {
       gap: 30px;
@@ -90,7 +122,7 @@ nav {
     a {
       padding: 10px 20px;
       margin: 0 5px;
-      border-radius: 5px;
+      border-radius: 8px;
       transition: all 0.3s ease;
     }
 
@@ -106,7 +138,7 @@ nav {
         border-radius: 50%;
         object-fit: cover;
         margin-right: 15px;
-        border: 2px solid #fece51;
+        border: 2px solid #FFD700;
       }
 
       .username {
@@ -126,19 +158,21 @@ nav {
         gap: 10px;
         position: relative;
         padding: 10px 20px;
-        background-color: rgba(255, 255, 255, 0.1);
-        border-radius: 5px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
         transition: all 0.3s ease;
+        border: 1px solid rgba(255, 215, 0, 0.2);
 
         &:hover {
-          background-color: rgba(255, 255, 255, 0.15);
+          background: rgba(255, 255, 255, 0.15);
+          border-color: #FFD700;
         }
 
         .notification {
           position: absolute;
           top: -5px;
           right: -5px;
-          background-color: #e74c3c;
+          background: #e74c3c;
           color: white;
           width: 20px;
           height: 20px;
@@ -150,20 +184,34 @@ nav {
           font-weight: bold;
         }
       }
+
+      .addProperty {
+        margin-left: 15px;
+        padding: 10px 20px;
+        background: linear-gradient(90deg, #FFD700, #FFA500);
+        color: #000;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+        }
+      }
     }
 
     .register {
-      background-color: #fece51;
-      color: #1a1a1a;
-      font-weight: 500;
+      background: linear-gradient(90deg, #FFD700, #FFA500);
+      color: #000;
+      font-weight: 600;
       padding: 10px 20px;
-      border-radius: 5px;
+      border-radius: 8px;
       transition: all 0.3s ease;
 
       &:hover {
-        background-color: #f0b400;
         transform: translateY(-2px);
-        box-shadow: 0 4px 10px rgba(254, 206, 81, 0.3);
+        box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
       }
     }
 
@@ -188,7 +236,7 @@ nav {
       right: -100%;
       width: 50%;
       height: calc(100vh - 100px);
-      background-color: #1a1a1a;
+      background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%);
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
@@ -209,10 +257,10 @@ nav {
         display: block;
         margin: 20px 0;
         font-size: 18px;
-        color: #f0f0f0;
+        color: #ffffff;
 
         &:hover {
-          color: #fece51;
+          color: #FFD700;
         }
       }
     }

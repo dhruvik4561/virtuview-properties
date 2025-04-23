@@ -11,20 +11,29 @@ function HomePage() {
     <div className="homePage">
       {/* Hero Section */}
       <div className="heroSection">
-        <div className="textContainer">
-          <div className="wrapper">
-            <h1 className="title">Find Real Estate & Get Your Dream Place</h1>
-            <p>
-              Discover your perfect home with our extensive property listings. 
-              From cozy apartments to luxurious mansions, we have the right property for you.
+        <div className="heroContent">
+          <div className="heroText">
+            <div className="badge">
+              <span className="icon">⚡</span>
+              <span>Premium Real Estate</span>
+            </div>
+            <h1 className="title">
+              <span className="highlight">Luxury Living</span>
+              <br />
+              Redefined
+            </h1>
+            <p className="subtitle">
+              Discover extraordinary properties that match your extraordinary lifestyle
             </p>
-            <SearchBar />
-           
+            <div className="searchWrapper">
+              <div className="searchContainer">
+                <SearchBar />
+              </div>
+            </div>
           </div>
         </div>
-        <div className="imgContainer">
-          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Luxury Real Estate" />
-        </div>
+        <div className="heroOverlay"></div>
+        <div className="heroPattern"></div>
       </div>
 
       {/* Our Features Section */}
@@ -76,7 +85,7 @@ function HomePage() {
           </div>
           <div className="valueContent">
             <div className="valueImage">
-              <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1073&q=80" alt="Our Value - Modern Real Estate" />
+              <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Our Value - Modern Real Estate" />
             </div>
             <div className="valuePoints">
               <div className="valuePoint">

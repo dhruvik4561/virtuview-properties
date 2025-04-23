@@ -1,4 +1,3 @@
-import Chat from "../../components/chat/Chat";
 import List from "../../components/list/List";
 import Bookings from "../../components/bookings/Bookings";
 import PropertyBookings from "../../components/propertyBookings/PropertyBookings";
@@ -37,20 +36,7 @@ function ProfilePage() {
             <div className="userDetails">
               <h1>{currentUser.username}</h1>
               <p>{currentUser.email}</p>
-              <div className="userStats">
-                <div className="stat">
-                  <span className="number">0</span>
-                  <span className="label">Properties</span>
-                </div>
-                <div className="stat">
-                  <span className="number">0</span>
-                  <span className="label">Bookings</span>
-                </div>
-                <div className="stat">
-                  <span className="number">0</span>
-                  <span className="label">Saved</span>
-                </div>
-              </div>
+              <p className="userType">Account Type: {currentUser.userType}</p>
             </div>
           </div>
           <div className="headerActions">
@@ -66,24 +52,53 @@ function ProfilePage() {
 
       <div className="profileContent">
         <div className="mainContent">
-          <div className="section">
-            <div className="sectionHeader">
-              <h2>My Properties</h2>
-              <Link to="/add" className="addBtn">
-                Create New Post
-              </Link>
-            </div>
-            <div className="sectionContent">
-              <Suspense fallback={<div className="loading">Loading...</div>}>
-                <Await
-                  resolve={data.postResponse}
-                  errorElement={<div className="error">Error loading posts!</div>}
-                >
-                  {(postResponse) => <List posts={postResponse.data.userPosts} />}
-                </Await>
-              </Suspense>
-            </div>
-          </div>
+          {currentUser.userType === "seller" && (
+            <>
+              <div className="section">
+                <div className="sectionHeader">
+                  <h2>My Properties</h2>
+                  <Link to="/add" className="addBtn">
+                    Create New Post
+                  </Link>
+                </div>
+                <div className="sectionContent">
+                  <Suspense fallback={<div className="loading">Loading properties...</div>}>
+                    <Await
+                      resolve={data.postResponse}
+                      errorElement={<div className="error">Error loading properties!</div>}
+                    >
+                      {(postResponse) => {
+                        const { userPosts } = postResponse.data;
+                        return (
+                          <>
+                            {userPosts.length === 0 ? (
+                              <div className="emptyState">
+                                <p>You haven't created any properties yet.</p>
+                                <Link to="/add" className="createBtn">
+                                  Create Your First Property
+                                </Link>
+                              </div>
+                            ) : (
+                              <List posts={userPosts} />
+                            )}
+                          </>
+                        );
+                      }}
+                    </Await>
+                  </Suspense>
+                </div>
+              </div>
+
+              <div className="section">
+                <div className="sectionHeader">
+                  <h2>Property Booking Requests</h2>
+                </div>
+                <div className="sectionContent">
+                  <PropertyBookings />
+                </div>
+              </div>
+            </>
+          )}
 
           <div className="sideBySideSections">
             <div className="section">
@@ -102,39 +117,16 @@ function ProfilePage() {
               </div>
             </div>
 
-            <div className="section">
-              <div className="sectionHeader">
-                <h2>My Bookings</h2>
+            {currentUser.userType === "buyer" && (
+              <div className="section">
+                <div className="sectionHeader">
+                  <h2>My Bookings</h2>
+                </div>
+                <div className="sectionContent">
+                  <Bookings />
+                </div>
               </div>
-              <div className="sectionContent">
-                <Bookings />
-              </div>
-            </div>
-          </div>
-
-          <div className="section">
-            <div className="sectionHeader">
-              <h2>Property Booking Requests</h2>
-            </div>
-            <div className="sectionContent">
-              <PropertyBookings />
-            </div>
-          </div>
-
-          <div className="section">
-            <div className="sectionHeader">
-              <h2>Messages</h2>
-            </div>
-            <div className="sectionContent">
-              <Suspense fallback={<div className="loading">Loading...</div>}>
-                <Await
-                  resolve={data.chatResponse}
-                  errorElement={<div className="error">Error loading chats!</div>}
-                >
-                  {(chatResponse) => <Chat chats={chatResponse.data} />}
-                </Await>
-              </Suspense>
-            </div>
+            )}
           </div>
         </div>
       </div>

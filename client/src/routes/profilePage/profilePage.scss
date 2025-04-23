@@ -83,28 +83,18 @@
 
           p {
             color: #e0e0e0;
-            margin-bottom: 15px;
+            margin-bottom: 5px;
           }
 
-          .userStats {
-            display: flex;
-            gap: 20px;
-
-            .stat {
-              text-align: center;
-
-              .number {
-                display: block;
-                font-size: 1.5rem;
-                font-weight: bold;
-                color: #4a90e2;
-              }
-
-              .label {
-                font-size: 0.9rem;
-                color: #e0e0e0;
-              }
-            }
+          .userType {
+            display: inline-block;
+            padding: 4px 12px;
+            background-color: #fece51;
+            color: #1a1a1a;
+            border-radius: 20px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            margin-top: 10px;
           }
         }
       }

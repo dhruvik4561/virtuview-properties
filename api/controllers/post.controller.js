@@ -77,6 +77,18 @@ export const addPost = async (req, res) => {
   const tokenUserId = req.userId;
 
   try {
+    // Verify user is a seller
+    const user = await prisma.user.findUnique({
+      where: { id: tokenUserId }
+    });
+
+    if (!user || user.userType !== 'seller') {
+      return res.status(403).json({
+        success: false,
+        message: "Only sellers can create property listings"
+      });
+    }
+
     const newPost = await prisma.post.create({
       data: {
         ...body.postData,

@@ -1,5 +1,5 @@
 import HomePage from "./routes/homePage/homePage";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom";
 import ListPage from "./routes/listPage/listPage";
 import { Layout, RequireAuth } from "./routes/layout/layout";
 import SinglePage from "./routes/singlePage/singlePage";
@@ -12,8 +12,12 @@ import AboutPage from "./routes/aboutPage/aboutPage";
 import ContactPage from "./routes/contactPage/contactPage";
 import PropertiesPage from "./routes/propertiesPage/propertiesPage";
 import { listPageLoader, profilePageLoader, singlePageLoader } from "./lib/loaders";
+import { useContext } from "react";
+import { AuthContext } from "./context/AuthContext";
 
 function App() {
+  const { currentUser } = useContext(AuthContext);
+
   const router = createBrowserRouter([
     {
       path: "/",
@@ -70,7 +74,7 @@ function App() {
         },
         {
           path: "/add",
-          element: <NewPostPage />,
+          element: currentUser?.userType === "seller" ? <NewPostPage /> : <Navigate to="/" />,
         },
       ],
     },
